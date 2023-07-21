@@ -2,10 +2,7 @@ name: "Lint PR"
 
 on:
   pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
+    branches: [main]
 
 env:
   NEWRELIC_KEY: ${{ secrets.NEWRELIC_KEY }}
