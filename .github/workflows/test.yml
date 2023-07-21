@@ -20,6 +20,6 @@ jobs:
         with:
           node-version: "18.x"
           registry-url: "https://npm.pkg.github.com"
-      - name: setting env
+      - name: setting env variables
         run: |
           echo $NEWRELIC_APP_NAME
