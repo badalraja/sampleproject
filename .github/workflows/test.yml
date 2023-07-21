@@ -22,5 +22,3 @@ jobs:
         run: |
           NEWRELIC_APP_NAME=$(echo ${env.APP_NAME//-/_} | tr 'a-z' 'A-Z')
           echo $NEWRELIC_APP_NAME
-      - name: printing env
-        run: echo ${{NEWRELIC_APP_NAME}}
