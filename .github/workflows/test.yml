@@ -20,5 +20,6 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
       - name: setting env
         run: |
-          NEWRELIC_APP_NAME=$(echo ${env.APP_NAME//-/_} | tr 'a-z' 'A-Z')
+          echo 
+          NEWRELIC_APP_NAME=${env.APP_NAME//-/_} | tr 'a-z' 'A-Z')
           echo $NEWRELIC_APP_NAME
