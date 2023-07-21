@@ -9,6 +9,8 @@ on:
 env:
   NEWRELIC_KEY: ${{ secrets.NEWRELIC_KEY }}
   APP_NAME: "marketing-consents"
+  NEWRELIC_APP_NAME: NEWRELIC_APP_$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z')
+
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -20,6 +22,4 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
       - name: setting env
         run: |
-          echo 
-          NEWRELIC_APP_NAME=$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z')
           echo $NEWRELIC_APP_NAME
