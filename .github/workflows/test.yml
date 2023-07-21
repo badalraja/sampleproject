@@ -6,7 +6,7 @@ on:
 
 env:
   NEWRELIC_KEY: ${{ secrets.NEWRELIC_KEY }}
-  APP_NAME: "marketing-consents"
+  APP_NAME: "marketing-consent"
 
 jobs:
   main:
