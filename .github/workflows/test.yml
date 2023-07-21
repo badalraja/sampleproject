@@ -1,0 +1,21 @@
+name: "Lint PR"
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+env:
+  APP_NAME: "marketing-consent"
+  NEWRELIC_APP_NAME: NEWRELIC_APP_${{ $(echo ${env.APP_NAME//-/_} | tr 'a-z' 'A-Z') }}
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18.x"
+          registry-url: "https://npm.pkg.github.com"
+      - run: echo ${{NEWRELIC_APP_NAME}}
