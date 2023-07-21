@@ -13,10 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          registry-url: "https://npm.pkg.github.com"
       - name: setting env
         run: |
           echo "NEWRELIC_APP_NAME=NEWRELIC_APP_$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z')" >> $GITHUB_ENV
