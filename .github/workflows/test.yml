@@ -1,4 +1,5 @@
 name: "Lint PR"
+
 on:
   pull_request:
     types:
@@ -9,6 +10,7 @@ on:
 env:
   NEWRELIC_KEY: ${{ secrets.NEWRELIC_KEY }}
   APP_NAME: "marketing-consents"
+
 jobs:
   main:
     runs-on: ubuntu-latest
