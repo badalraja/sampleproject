@@ -1,4 +1,4 @@
-name: "Testing"
+name: "Lint PR"
 on:
   pull_request:
     types:
@@ -8,9 +8,7 @@ on:
 
 env:
   NEWRELIC_KEY: ${{ secrets.NEWRELIC_KEY }}
-  APP_NAME: "marketing-consent"
-  NEWRELIC_APP_NAME: NEWRELIC_APP_${{ $(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z') }}
-
+  APP_NAME: "marketing-consents"
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -20,6 +18,9 @@ jobs:
         with:
           node-version: "18.x"
           registry-url: "https://npm.pkg.github.com"
-      - name: setting env variables
+      - name: setting env
+        run: |
+          echo "NEWRELIC_APP_NAME=NEWRELIC_APP_$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z')" >> $GITHUB_ENV
+      - name: testing setting env
         run: |
           echo $NEWRELIC_APP_NAME
