@@ -9,7 +9,7 @@ on:
 env:
   NEWRELIC_KEY: ${{ secrets.NEWRELIC_KEY }}
   APP_NAME: "marketing-consents"
-  NEWRELIC_APP_NAME: NEWRELIC_APP_$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z')
+  NEWRELIC_APP_NAME: ${{ NEWRELIC_APP_$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z') }}
 
 jobs:
   main:
