@@ -7,6 +7,7 @@ on:
       - synchronize
 
 env:
+  NEWRELIC_KEY: ${{ secrets.NEWRELIC_KEY }}
   APP_NAME: "marketing-consent"
   NEWRELIC_APP_NAME: NEWRELIC_APP_${{ $(echo ${env.APP_NAME//-/_} | tr 'a-z' 'A-Z') }}
 jobs:
