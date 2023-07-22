@@ -1,23 +1,21 @@
 name: "Lint PR"
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      APP_NAME:
+        description: "Enter the stack app name - without martech prefix"
+        required: true
 
-env:
-  APP_NAME: "marketing-consentss"
-  NEWRELIC_APP_NAME: NEWRELIC_APP_${{ (echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z') }}
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # - name: setting env
-      #   run: |
-      #     echo "geenrating newrelic app name"
-      #     echo "NEWRELIC_APP_NAME=NEWRELIC_APP_$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z')" >> $GITHUB_ENV
+      - name: setting env
+        run: |
+          echo "geenrating newrelic app name"
+          echo "NEWRELIC_APP_NAME=NEWRELIC_APP_$(echo ${{ inputs.APP_NAME }} | tr '-' '_' | tr 'a-z' 'A-Z')" >> $GITHUB_ENV
       - name: testing setting env
         run: |
           echo ${NEWRELIC_APP_NAME}
