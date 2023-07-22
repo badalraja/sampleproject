@@ -1,25 +1,21 @@
 name: "Lint PR"
-on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
 
-env:
-  NEWRELIC_KEY: ${{ secrets.NEWRELIC_KEY }}
-  APP_NAME: "marketing-consent"
-  NEWRELIC_APP_NAME: ${{ NEWRELIC_APP_$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z') }}
+on:
+  workflow_dispatch:
+    inputs:
+      APP_NAME:
+        description: "Enter the stack app name - without martech prefix"
+        required: true
 
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          registry-url: "https://npm.pkg.github.com"
-      - name: setting env variables
+      - name: setting env
         run: |
-          echo $NEWRELIC_APP_NAME
+          echo "geenrating newrelic app name"
+          echo "NEWRELIC_APP_NAME=NEWRELIC_APP_$(echo ${{ inputs.APP_NAME }} | tr '-' '_' | tr 'a-z' 'A-Z')" >> $GITHUB_ENV
+      - name: testing setting env
+        run: |
+          echo ${NEWRELIC_APP_NAME}
