@@ -20,4 +20,4 @@ jobs:
           echo "NEWRELIC_APP_NAME=NEWRELIC_APP_$(echo $APP_NAME | tr '-' '_' | tr 'a-z' 'A-Z')" >> $GITHUB_ENV
       - name: testing setting env
         run: |
-          echo ${{NEWRELIC_APP_NAME}}
+          echo ${NEWRELIC_APP_NAME}
